@@ -1,20 +1,17 @@
-// import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'register.dart';
-// import 'package:firebase_auth/firebase_auth.dart';
-// import 'package:google_sign_in/google_sign_in.dart';
-// import 'package:flutter_signin_button/flutter_signin_button.dart';
+import 'home.dart';
 
-class Home extends StatefulWidget {
-  const Home({super.key});
-
+class Register extends StatefulWidget {
+  const Register({super.key});
 
   @override
-  State<Home> createState() => _HomeState();
+  State<Register> createState() => _RegisterState();
 }
 
-class _HomeState extends State<Home> {
+class _RegisterState extends State<Register> {
   bool _obscureText = true;
+  bool _obscureText2 = true;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -46,7 +43,7 @@ class _HomeState extends State<Home> {
               ),
             ),
             const Text(
-              'Sign in',
+              'Create an account',
               style: TextStyle(
                 fontSize: 28,
                 color: Colors.white70,
@@ -64,6 +61,21 @@ class _HomeState extends State<Home> {
                         decoration: InputDecoration(
                           fillColor: Color.fromRGBO(223, 208, 178, 1),
                           filled: true,
+                          labelText: 'Username',
+                          // border: OutlineInputBorder(),
+                          focusedBorder: OutlineInputBorder(
+                            borderSide: BorderSide(color: Colors.white),
+                          ),
+                          prefixIcon:
+                              Icon(Icons.person_2_rounded, color: Colors.black),
+                        ),
+                      ),
+                      const SizedBox(height: 20),
+                      const TextField(
+                        keyboardType: TextInputType.emailAddress,
+                        decoration: InputDecoration(
+                          fillColor: Color.fromRGBO(223, 208, 178, 1),
+                          filled: true,
                           labelText: 'Email or phone',
                           // border: OutlineInputBorder(),
                           focusedBorder: OutlineInputBorder(
@@ -74,26 +86,56 @@ class _HomeState extends State<Home> {
                         ),
                       ),
                       const SizedBox(height: 20),
-                       TextField(
-                         obscureText: _obscureText,
+                      TextField(
+                        obscureText: _obscureText,
                         keyboardType: TextInputType.emailAddress,
-                        decoration:  InputDecoration(
+                        decoration: InputDecoration(
                           fillColor: const Color.fromRGBO(223, 208, 178, 1),
                           filled: true,
                           labelText: 'Password',
-                          focusedBorder:const OutlineInputBorder(
+                          focusedBorder: const OutlineInputBorder(
                             borderSide: BorderSide(color: Colors.white),
                           ),
                           // enabledBorder: OutlineInputBorder(borderSide: BorderSide(color:Colors.black),),
 
                           suffixIcon: IconButton(
                             icon: Icon(
-                              _obscureText ? Icons.visibility : Icons.visibility_off,
+                              _obscureText
+                                  ? Icons.visibility
+                                  : Icons.visibility_off,
                               color: Colors.black,
                             ),
                             onPressed: () {
                               setState(() {
                                 _obscureText = !_obscureText;
+                              });
+                            },
+                          ),
+                        ),
+                      ),
+                      const SizedBox(height: 20),
+                      TextField(
+                        obscureText: _obscureText2,
+                        keyboardType: TextInputType.emailAddress,
+                        decoration: InputDecoration(
+                          fillColor: const Color.fromRGBO(223, 208, 178, 1),
+                          filled: true,
+                          labelText: 'Confirm Password',
+                          focusedBorder: const OutlineInputBorder(
+                            borderSide: BorderSide(color: Colors.white),
+                          ),
+                          // enabledBorder: OutlineInputBorder(borderSide: BorderSide(color:Colors.black),),
+
+                          suffixIcon: IconButton(
+                            icon: Icon(
+                              _obscureText2
+                                  ? Icons.visibility
+                                  : Icons.visibility_off,
+                              color: Colors.black,
+                            ),
+                            onPressed: () {
+                              setState(() {
+                                _obscureText2 = !_obscureText2;
                               });
                             },
                           ),
@@ -115,7 +157,7 @@ class _HomeState extends State<Home> {
                           ),
                           onPressed: () {},
                           child: const Text(
-                            'Sign in',
+                            'Sign Up',
                             style: TextStyle(fontSize: 20),
                           ),
                         ),
@@ -135,36 +177,18 @@ class _HomeState extends State<Home> {
                     onTap: () {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => const Register()),
-                      );
-                    },
-                    child: const Text(
-                      ' Don\'t have an account? ',
-                      style: TextStyle(fontSize: 16.0, color: Colors.white),
-                    ),
-                  ),
-                  const SizedBox(
-                    width: 20.0,
-                  ),
-                  GestureDetector(
-                    onTap: () {
-                      Navigator.push(
-                        context,
                         MaterialPageRoute(builder: (context) => const Home()),
                       );
                     },
                     child: const Text(
-                      'Forgot Password?',
-                      style: TextStyle(
-                        fontSize: 16,
-                        color: Colors.white,
-                      ),
+                      ' I have an account ',
+                      style: TextStyle(fontSize: 16.0, color: Colors.white),
                     ),
                   ),
                 ],
               ),
             ),
-            const SizedBox( height:25.0),
+            const SizedBox(height: 25.0),
             SizedBox(
               width: 250.0,
               height: 50.0,
@@ -181,14 +205,13 @@ class _HomeState extends State<Home> {
                       child: Image.asset(
                         'images/G.png', // Replace with the actual path to your Google logo image
                         height: 25.0,
-                        width: 25.0,// Adjust the height as needed
+                        width: 25.0, // Adjust the height as needed
                       ),
                     ),
-                   const Text(
-                     'Sign in with Google',
-                     style: TextStyle(color: Colors.black,
-                     fontSize:17),
-                   ),
+                    const Text(
+                      'Sign in with Google',
+                      style: TextStyle(color: Colors.black, fontSize: 17),
+                    ),
                   ],
                 ),
               ),
